@@ -10,5 +10,7 @@
             {{Session::get('username')}}，您好！, <a href="{{ route('logout') }}">登出</a>
             <p>
             帳戶金額：{{ $getUserInfo[0]['money'] }}元
+            &emsp;
+            1.<a href="{{ route('edit-password') }}">修改密碼</a>
     </body>
 </html>

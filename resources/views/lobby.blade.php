@@ -11,5 +11,7 @@
             <p>
             帳戶金額：{{ $getUserInfo[0]['money'] }}元
             @include('flash-message')
+            <p>
+                <a href="{{ route('edit-password') }}">修改密碼</a>
     </body>
 </html>
