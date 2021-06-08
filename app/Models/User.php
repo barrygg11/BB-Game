@@ -40,4 +40,22 @@ class User extends Model
         $rets = self::insert(['username' => $username, 'password' => $password, 'money' => 0]);
         return $rets;
     }
+
+    /**
+     * 修改密碼
+     */
+    public static function editPassword($username, $password){
+        $rets = self::where('username',$username)
+        ->update(['password' => $password]);
+        return $rets;
+    }
+
+    /**
+     * 存提款
+     */
+    public static function saveMoney($username,$money){
+        $rets = self::where('username',$username)
+        ->update(['money' => $money]);
+        return $rets;
+    }
 }

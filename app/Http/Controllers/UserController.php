@@ -75,4 +75,30 @@ class UserController extends Controller
             ->with('success','註冊成功');
         }
     }
+
+    /**
+     * 修改密碼介面
+     */
+    public function editPasswordIndex() {
+        return view('edit-password');
+    }
+
+    /**
+     * 修改密碼
+     */
+    public function editPassword(Request $request) {
+        $username = $request->session()->get('username');
+        $password = $request->input('password');
+        $getUserInfo = User::getUserInfo($username);
+        $oldPassword = $getUserInfo[0]['password'];
+
+        if ($password == $oldPassword) {
+            return redirect("/edit-password")
+            ->with('error','密碼已重複');
+        } else {
+            User::editPassword($username, $password);
+            return redirect("/edit-password")
+            ->with('success','修改成功');
+        }
+    }
 }
