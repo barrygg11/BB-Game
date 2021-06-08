@@ -49,4 +49,13 @@ class User extends Model
         ->update(['password' => $password]);
         return $rets;
     }
+
+    /**
+     * 存提款
+     */
+    public static function saveMoney($username,$money){
+        $rets = self::where('username',$username)
+        ->update(['money' => $money]);
+        return $rets;
+    }
 }

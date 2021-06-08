@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LobbyController;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,6 @@ Route::post('/register', [UserController::class,'register']);  //註冊使用者
 
 Route::get('/edit-password', [UserController::class,'editPasswordIndex'])->name('edit-password'); //修改密碼介面
 Route::post('/edit-password', [UserController::class,'editPassword']); //修改密碼
+
+Route::get('/save-money', [AccountController::class,'saveMoneyIndex'])->name('save-money'); //存提款介面
+Route::post('/save-money', [AccountController::class,'saveMoney']); //存提款
