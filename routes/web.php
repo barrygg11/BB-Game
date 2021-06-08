@@ -23,3 +23,6 @@ Route::get('/lobby/{name}', [LobbyController::class, 'lobbyIndex'])->name('lobby
 Route::get('/lobby/{name}', [LobbyController::class, 'lobbyIndex'])->name('adminLobby'); //管理員大廳介面
 
 Route::get('/logout', [UserController::class,'logout'])->name('logout'); //登出使用者
+
+Route::get('/register', [UserController::class,'registerIndex'])->name('register'); //註冊使用者介面
+Route::post('/register', [UserController::class,'register']);  //註冊使用者

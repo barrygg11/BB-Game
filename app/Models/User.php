@@ -32,4 +32,12 @@ class User extends Model
         ->toArray();
         return $rets;
     }
+
+    /**
+     * 註冊使用者
+     */
+    public static function registerUser($username, $password){
+        $rets = self::insert(['username' => $username, 'password' => $password, 'money' => 0]);
+        return $rets;
+    }
 }

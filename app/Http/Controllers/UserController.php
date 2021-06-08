@@ -49,4 +49,30 @@ class UserController extends Controller
         $request->session()->forget('username');
         return redirect("/");
     }
+
+    /**
+     * 顯示註冊介面
+     */
+    public function registerIndex() {
+        return view('register');
+    }
+
+    /**
+     * 註冊使用者，用count判斷，如果是1表示有註冊過,0表示沒有
+     */
+    public function register(Request $request) {
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $getUser = User::getUserInfo($username);
+        $count = count($getUser);
+
+        if ($count == 1) {
+            return redirect("/register")
+            ->with('error','該使用者已重複');
+        } else {
+            User::registerUser($username, $password);
+            return redirect("/register")
+            ->with('success','註冊成功');
+        }
+    }
 }
