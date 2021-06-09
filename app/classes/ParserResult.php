@@ -26,12 +26,12 @@ class ParserResult
         $gameNum = $matches_num[0];
         unset($gameNum[0]);
         rsort($gameNum);
-        $count = count($gameNum);
 
         $pattern_rets = '/[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}  [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}/';
         $string_rets = $output;
         preg_match_all($pattern_rets, $string_rets, $matches_rets);
         $gameRets = $matches_rets[0];
+        $count = count($gameRets);
 
         for ($number = 0; $number<$count-1; $number++) {
             $game_num = $gameNum[$number];
