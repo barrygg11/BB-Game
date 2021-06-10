@@ -42,4 +42,32 @@ class Game extends Model
         ->update(['result_time' => time()]);
         return $rets;
     }
+
+    /**
+     * 取的最新期數
+     */
+    public static function getGameInfo($game_type){
+        $rets = self::where('game_type',$game_type)
+        ->orderBy('game_num','desc')
+        ->get()
+        ->toArray();
+        return $rets;
+    }
+    
+    /**
+     * Insert 遊戲的內容
+     */
+    public static function insertGameNum($game_num,$game_type,$state,$open_time,$close_time){
+        $rets = self::insert([
+            'game_num' => $game_num,
+            'game_type'=> $game_type,
+            'state' => $state,
+            'result'=> null,
+            'open_time' => $open_time,
+            'close_time' => $close_time,
+            'result_time' => null,
+            'create_time' => time()
+        ]);
+        return $rets;
+    }
 }
