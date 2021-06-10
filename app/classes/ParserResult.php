@@ -33,7 +33,7 @@ class ParserResult
         $gameRets = $matches_rets[0];
         $count = count($gameRets);
 
-        for ($number = 0; $number<$count-1; $number++) {
+        for ($number = 0; $number < $count; $number++) {
             $game_num = $gameNum[$number];
             $game_rets = $gameRets[$number];
             $allArray = explode("  ",$game_rets); //先分成兩個陣列,去掉[10]兩個空格-字串轉陣列
