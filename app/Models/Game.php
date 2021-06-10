@@ -53,7 +53,7 @@ class Game extends Model
         ->toArray();
         return $rets;
     }
-    
+
     /**
      * Insert 遊戲的內容
      */
@@ -68,6 +68,19 @@ class Game extends Model
             'result_time' => null,
             'create_time' => time()
         ]);
+        return $rets;
+    }
+
+    /**
+     * 取最新狀態為結算的期數資料
+     */
+    public static function getGameResult($game_type){
+        $rets = self::where('game_type',$game_type)
+        ->where('state',2)
+        ->orderBy('game_num','desc')
+        ->take(1)
+        ->get()
+        ->toArray();
         return $rets;
     }
 }
