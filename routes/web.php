@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LobbyController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,6 @@ Route::post('/edit-password', [UserController::class,'editPassword']); //修改�
 
 Route::get('/save-money', [AccountController::class,'saveMoneyIndex'])->name('save-money'); //存提款介面
 Route::post('/save-money', [AccountController::class,'saveMoney']); //存提款
+
+Route::get('/bingo', [GameController::class,'bingoIndex'])->name('bingo'); //賓果介面
+Route::post('/bingo', [GameController::class,'bingo']); // 賓果
