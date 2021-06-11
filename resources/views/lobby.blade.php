@@ -14,6 +14,9 @@
             <a href="{{ route('save-money') }}">存提款</a>
             <a href="{{ route('edit-password') }}">修改密碼</a>
             <p>
+            -----------------------------------------------
+            <p>
+            <a href="{{ route('bingo') }}">【台灣賓果賓果】</a>
             @include('flash-message')
     </body>
 </html>

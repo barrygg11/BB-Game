@@ -83,4 +83,12 @@ class Game extends Model
         ->toArray();
         return $rets;
     }
+
+    /**
+     * 用下注時間來判斷期數開盤到關盤的時間
+     */
+    public static function checkOrderTimeRange(){
+        $rets = self::get()->toArray();
+        return $rets;
+    }
 }

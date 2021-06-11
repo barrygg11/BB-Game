@@ -45,4 +45,23 @@ class Order extends Model
         ->sum(self::raw('gold + wingold'));
         return $rets;
     }
+
+    /**
+     * 輸入下注單
+     */
+    public static function insertOrder($user_id, $game_type, $game_id, $game_num, $wtype, $odds, $gold){
+        $rets = self::insert([
+            'user_id' => $user_id,
+            'game_type' => $game_type,
+            'game_id' => $game_id,
+            'game_num' => $game_num,
+            'wtype' => $wtype,
+            'odds' => $odds,
+            'gold' => $gold,
+            'result'=>0,
+            'wingold' => 0,
+            'order_time' => time()
+        ]);
+        return $rets;
+    }
 }
