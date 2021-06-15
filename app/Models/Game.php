@@ -91,4 +91,24 @@ class Game extends Model
         $rets = self::get()->toArray();
         return $rets;
     }
+
+    /**
+     * 搜尋期數管理
+     */
+    public static function gameNumControl($game_type, $newTime, $game_num) {
+        if ($game_num == "") {
+            $rets = self::where('game_type', $game_type)
+            ->where('create_time',$newTime)
+            ->get()
+            ->toArray();
+            return $rets;
+        } else {
+            $rets = self::where('game_type', $game_type)
+            ->where('create_time',$newTime)
+            ->where('game_num', $game_num)
+            ->get()
+            ->toArray();
+            return $rets;
+        }
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LobbyController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\AdminGameControlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,14 @@ Route::post('/save-money', [AccountController::class,'saveMoney']); //存提款
 
 Route::get('/bingo', [GameController::class,'bingoIndex'])->name('bingo'); //賓果介面
 Route::post('/bingo', [GameController::class,'bingo']); // 賓果
+
+Route::get('/gameNumControl', [AdminGameControlController::class, 'gameNumControlIndex'])->name('gameNumControl'); //期數管理介面
+Route::post('/gameNumControl', [AdminGameControlController::class, 'gameNumControl']); //期數管理
+
+Route::get('/gameOrdersControl', [AdminGameControlController::class, 'gameOrdersControlIndex'])->name('gameOrdersControl'); //注單管理介面
+Route::post('/gameOrdersControl', [AdminGameControlController::class, 'gameOrdersControl']); //注單管理
+
+Route::get('/userSearchControl', [AdminGameControlController::class, 'userSearchControlIndex'])->name('userSearchControl'); //會員輸贏管理介面
+Route::post('/userSearchControl', [AdminGameControlController::class, 'userSearchControl']); //會員輸贏管理
+
+Route::get('/userSearchControl/{game_id}', [AdminGameControlController::class, 'userHyperlinkIndex']); //查看該期的所有注單

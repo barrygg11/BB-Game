@@ -15,5 +15,10 @@
             &emsp;
             2.<a href="{{ route('edit-password') }}">修改密碼</a>
             &emsp;
+            3.<a href="{{ route('gameNumControl') }}">期數管理</a>
+            &emsp;
+            4.<a href="{{ route('gameOrdersControl') }}">注單管理</a>
+            &emsp;
+            5.<a href="{{ route('userSearchControl') }}">會員輸贏金額查詢</a>
     </body>
 </html>
