@@ -64,4 +64,53 @@ class Order extends Model
         ]);
         return $rets;
     }
+
+    /**
+     * 搜尋注單管理符合where條件就搜尋
+     */
+    public static function getSearchOrders($game_type, $game_num, $result) {
+        $query = self::select('*');
+        if (isset($game_type))
+            $query->where('game_type',$game_type);
+        if (isset($game_num))
+            $query->where('game_num',$game_num);
+        if (isset($result))
+            $query->where('result',$result);
+            $rets = $query->get()->toArray();
+        return $rets;
+    }
+
+    /**
+     * 查詢使用者輸贏
+     */
+    public static function userSearchOrder($game_type,$user_id) {
+        $rets = self::where('game_type',$game_type)
+        ->where('user_id',$user_id)
+        ->select('game_id','game_num',self::raw('sum(gold) AS gold'),self::raw('sum(wingold) AS wingold'))
+        ->groupBy('game_id','game_num')
+        ->get()
+        ->toArray();
+        return $rets;
+    }
+
+    /**
+     * 取該使用者當期輸贏金額比較出輸或贏
+     */
+    public static function getNumUserWinGold($user_id,$game_type) {
+        $rets = self::where('user_id',$user_id)
+        ->where('game_type',$game_type)
+        ->sum('wingold');
+        return $rets;
+    }
+
+    /**
+     * 取該使用者的所有注單
+     */
+    public static function getUserOrder($user_id,$game_id) {
+        $rets = self::where('user_id',$user_id)
+        ->where('game_id',$game_id)
+        ->get()
+        ->toArray();
+        return $rets;
+    }
 }
