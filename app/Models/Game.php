@@ -111,4 +111,14 @@ class Game extends Model
             return $rets;
         }
     }
+
+    /**
+     * 取gameNum沒有結果的資料
+     */
+    public static function getGameNumNotResult($game_num) {
+        $rets = self::where('game_num',$game_num)
+        ->get()
+        ->toArray();
+        return $rets;
+    }
 }

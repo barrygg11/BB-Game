@@ -113,4 +113,34 @@ class Order extends Model
         ->toArray();
         return $rets;
     }
+
+    /**
+     * 取注單已過當天日期未結算資料
+     */
+    public static function getNullOrderInfo() {
+        $rets = self::where('result',0)
+        ->get()
+        ->toArray();
+        return $rets;
+    }
+
+    /**
+     * 更新過期的注單狀態
+     */
+    public static function updateNullOrder($game_num) {
+        $rets = self::where('game_num',$game_num)
+        ->update(['result'=>3]);
+        return $rets;
+    }
+
+    /**
+     * 加總過期注單下注金額退費
+     */
+    public static function getCancelSum($user_id,$game_num) {
+        $rets = self::where('user_id',$user_id)
+        ->where('game_num',$game_num)
+        ->where('result',3)
+        ->sum('gold');
+        return $rets;
+    }
 }
