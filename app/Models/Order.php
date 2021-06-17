@@ -143,4 +143,15 @@ class Order extends Model
         ->sum('gold');
         return $rets;
     }
+
+    /**
+     * 取當期最新注單期數
+     */
+    public static function getNewOrderNumInfo($game_type) {
+        $rets = self::where('game_type',$game_type)
+        ->orderBy('order_time','desc')
+        ->get()
+        ->toArray();
+        return $rets;
+    }
 }
