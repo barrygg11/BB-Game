@@ -58,4 +58,14 @@ class User extends Model
         ->update(['money' => $money]);
         return $rets;
     }
+
+    /**
+     * 修改使用者密碼API
+     */
+    public static function loginApi($username,$password,$newPassword) {
+        $rets = self::where('username',$username)
+        ->where('password',$password)
+        ->update(['password'=>$newPassword]);
+        return $rets;
+    }
 }
