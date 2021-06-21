@@ -121,4 +121,11 @@ class Game extends Model
         ->toArray();
         return $rets;
     }
+
+    public static function randomGameResult($game_type,$create_time,$result) {
+        $rets = self::where('game_type',$game_type)
+        ->where('result',null)
+        ->where('create_time', 'like','%'.$create_time.'%')
+        ->update(['state'=>2,'result'=>$result,'result_time'=>time()]);
+    }
 }
