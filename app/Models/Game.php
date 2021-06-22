@@ -122,6 +122,9 @@ class Game extends Model
         return $rets;
     }
 
+    /**
+     * 新增自動帶入亂數到前天未有賽果的期數
+     */
     public static function randomGameResult($game_type,$create_time,$result) {
         $rets = self::where('game_type',$game_type)
         ->where('result',null)
