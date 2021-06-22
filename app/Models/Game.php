@@ -95,20 +95,15 @@ class Game extends Model
     /**
      * 搜尋期數管理
      */
-    public static function gameNumControl($game_type, $newTime, $game_num) {
-        if ($game_num == "") {
-            $rets = self::where('game_type', $game_type)
-            ->where('create_time',$newTime)
-            ->get()
-            ->toArray();
-            return $rets;
-        } else {
-            $rets = self::where('game_type', $game_type)
-            ->where('create_time',$newTime)
-            ->where('game_num', $game_num)
-            ->get()
-            ->toArray();
-            return $rets;
-        }
+    public static function gameNumControl($game_type, $create_time, $game_num) {
+        $query = self::select('*');
+        if (isset($game_type))
+            $query->where('game_type',$game_type);
+        if (isset($create_time))
+            $query->where('create_time',$create_time);
+        if (isset($game_num))
+            $query->where('game_num',$game_num);
+            $rets = $query->get()->toArray();
+        return $rets;
     }
 }

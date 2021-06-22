@@ -20,22 +20,21 @@ class AdminGameControlController extends Controller
         $game_type = $request->input('game_type');
         $date = $request->input('create_time');
         $game_num = $request->input('game_num');
-        $create_time = strtotime($date);
 
         $request->session()->put('date',$date);
         $request->session()->put('game_num',$game_num);
 
-        $checkOrderTimeRange = Game::checkOrderTimeRange();
-        $UnixTime = date("1970-01-01 08:00:00");
-
-        foreach ($checkOrderTimeRange as $newTime) {
-            if ($create_time < $newTime['create_time'] && $create_time + strtotime("$UnixTime+23 hour 59 min 59 seconds") > $newTime['create_time']) {
-                $newTime = $newTime['create_time'];
-                break;
+        $allGameData = Game::checkOrderTimeRange();
+        $create_time = 0;
+        foreach ($allGameData as $gameData) {
+            $create_time_unix = $gameData['create_time'];
+            $General_date = date("Y-m-d",$create_time_unix);
+            if ($General_date == $date) {
+                $create_time = $create_time_unix;
             }
         }
 
-        $gameNumControl = Game::gameNumControl($game_type, $newTime, $game_num);
+        $gameNumControl = Game::gameNumControl($game_type, $create_time, $game_num);
         $getGameConfig = Config::getGameConfig();
         $count = count($gameNumControl);
 
