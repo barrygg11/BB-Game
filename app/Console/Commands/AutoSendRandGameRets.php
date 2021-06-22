@@ -41,7 +41,6 @@ class AutoSendRandGameRets extends Command
     {
         $game_type = $this->argument('game_type');
         $yesterday = date("Y-m-d",strtotime("-1 day"));
-        $today = date("Y-m-d");
         $getGameInfo = Game::getGameInfo($game_type);
         foreach ($getGameInfo as $allGameInfo) {
             $unixDate = $allGameInfo['create_time'];
