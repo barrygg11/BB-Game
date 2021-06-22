@@ -14,6 +14,7 @@
                         <option value="">請選擇遊戲</option>
                         <option @if($_POST['game_type'] == 'TWBG') selected @endif value="TWBG">台灣賓果賓果</option>
                     </select>
+                &emsp;
                 會員編號：<input type="text" name="user_id" value="{{Session::get('user_id')}}" required>
                 <p>
                 <input type="submit" name="submit" value="搜尋">
@@ -25,6 +26,7 @@
                         <option value="">請選擇遊戲</option>
                         <option value="TWBG">台灣賓果賓果</option>
                     </select>
+                &emsp;
                 會員編號：<input type="text" name="user_id" required>
                 <p>
                 <input type="submit" name="submit" value="搜尋">
