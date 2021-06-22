@@ -130,5 +130,6 @@ class Game extends Model
         ->where('result',null)
         ->where('create_time', 'like','%'.$create_time.'%')
         ->update(['state'=>2,'result'=>$result,'result_time'=>time()]);
+        return $rets;
     }
 }
