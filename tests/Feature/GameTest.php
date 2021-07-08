@@ -19,4 +19,9 @@ class GameTest extends TestCase
 
         $response->assertStatus(200)->assertSee('台灣賓果賓果');
     }
+
+    public function test_SearchOrders()
+    {
+        $this->get('gameOrdersControl')->assertSuccessful();
+    }
 }
