@@ -24,7 +24,7 @@ class UserTest extends TestCase
     public function test_Login()
     {
         $username = 'barry';
-        $password = 1234;
+        $password = 1111;
         $getUser = User::getUserInfo($username);
         $count = count($getUser);
 
@@ -60,9 +60,20 @@ class UserTest extends TestCase
     public function test_ChangePassword()
     {
         $username = 'barry';
-        $password = 1234;
+        $password = 1111;
 
         User::editPassword($username, $password);
         $this->assertTrue(true);
+    }
+
+    public function test_EnterLobby()
+    {
+        $username = 'barry';
+
+        if ($username != 'root') {
+            $username = 'user';
+        }
+
+        $this->withSession(['username' => 'barry'])->get("/lobby/{$username}")->assertSuccessful();
     }
 }
