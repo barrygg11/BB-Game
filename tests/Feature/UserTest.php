@@ -24,7 +24,7 @@ class UserTest extends TestCase
     public function test_Login()
     {
         $username = 'barry';
-        $password = 1111;
+        $password = 1234;
         $getUser = User::getUserInfo($username);
         $count = count($getUser);
 
@@ -42,6 +42,27 @@ class UserTest extends TestCase
         if ($checkUser == []) {
             User::registerUser($username, $password);
         }
+        $this->assertTrue(true);
+    }
+
+    public function test_SaveMoney()
+    {
+        $username = 'barry';
+        $money = 500;
+        $getUserInfo = User::getUserInfo($username);
+        $totalMoney = $getUserInfo[0]['money'];
+        $total = $money + $totalMoney;
+
+        User::saveMoney($username,$total);
+        $this->assertTrue(true);
+    }
+
+    public function test_ChangePassword()
+    {
+        $username = 'barry';
+        $password = 1234;
+
+        User::editPassword($username, $password);
         $this->assertTrue(true);
     }
 }
