@@ -65,4 +65,15 @@ class UserTest extends TestCase
         User::editPassword($username, $password);
         $this->assertTrue(true);
     }
+
+    public function test_EnterLobby()
+    {
+        $username = 'barry';
+
+        if ($username != 'root') {
+            $username = 'user';
+        }
+
+        $this->withSession(['username' => 'barry'])->get("/lobby/{$username}")->assertSuccessful();
+    }
 }
