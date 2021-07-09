@@ -22,6 +22,16 @@ class GameTest extends TestCase
 
     public function test_SearchOrders()
     {
-        $this->get('gameOrdersControl')->assertSuccessful();
+        $this->get('/gameOrdersControl')->assertSuccessful();
+    }
+
+    public function test_GameNumControl()
+    {
+        $this->get('/gameNumControl')->assertSuccessful();
+    }
+
+    public function test_UserSearchControl()
+    {
+        $this->get('/userSearchControl')->assertSuccessful();
     }
 }
