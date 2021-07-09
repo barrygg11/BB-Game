@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Game;
 
 class GameTest extends TestCase
 {
@@ -33,5 +34,14 @@ class GameTest extends TestCase
     public function test_UserSearchControl()
     {
         $this->get('/userSearchControl')->assertSuccessful();
+    }
+
+    public function test_SearchGameNum()
+    {
+        $game_type = '';
+        $create_time = '';
+        $game_num = '';
+        Game::gameNumControl($game_type, $create_time, $game_num);
+        $this->assertTrue(true);
     }
 }
